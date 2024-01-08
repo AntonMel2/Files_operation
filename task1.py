@@ -22,3 +22,15 @@ for i in range(len(res)):
 
 cook_book = {k:v for k, v in zip(dict_key, dict_value)}
 
+def get_shop_list_by_dishes(dishes, person_count):
+    ingredients_list = {}
+    for el in dishes:
+        if el in cook_book.keys():
+            for i in range(len(cook_book.get(el))):
+                ingredients_list[cook_book.get(el)[i].get('ingredient_name')] = cook_book.get(el)[i]
+
+    for k, v in ingredients_list.items():
+        v.pop('ingredient_name')
+        v['quantity'] = int(v['quantity']) * int(person_count)
+    return ingredients_list
+
